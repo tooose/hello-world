@@ -2,7 +2,7 @@ class Employee:
     """
     Klasa za vraboteni.
     """
-    def __init__(self, first_name:str, last_name:str, email:str, position:str, company:str, salary=None):
+    def __init__(self, first_name:str, last_name:str, email:str, position:str, company:str, salary=int):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
@@ -13,6 +13,7 @@ class Employee:
 
 
 class Company:
+    employee_list = []
 
     def __init__(self, name: str, company_id: int, address=None):
 
@@ -21,9 +22,20 @@ class Company:
         self.address = address
     
     def hire(self, employee:Employee, position:str, salary:int):
+        
         print(f'{self.name} go vrabotuva {employee.first_name}')
+
         employee.position = position
         employee.salary = salary
+        self.employee_list.append(employee)
+
+    def average_salary(self):
+        num_employee = len(self.employee_list)
+        tot_pay = 0
+        for employee in self.employee_list:
+            tot_pay += employee.salary
+        average_pay = tot_pay / num_employee
+        return average_pay
 
 semos_mk = Company("Semos Makedonija", 1234)
 
@@ -42,3 +54,6 @@ rab1 = Employee('pero', 'perev','mocam@pod.terasa', 'shef', 'Sofra', 120000)
 rab2 = Employee('risto', 'ristov','pristo@risov.com', 'prodavac', 'setek', 30000)
 rab3 = Employee('toshe', 'toshev','medika@va.com', 'postar', 'Promedika', 42000)
 
+neptun.hire(rab1, 'rabotnik', 40000)
+neptun.hire(rab2, 'rabotnik', 40000)
+neptun.hire(rab3, 'rabotnik', 40000)
