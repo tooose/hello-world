@@ -14,7 +14,7 @@ class Employee:
 
 class Company:
     employee_list = []
-
+    odmori = []
     def __init__(self, name: str, company_id: int, address=None):
 
         self.name = name
@@ -36,14 +36,25 @@ class Company:
             tot_pay += employee.salary
         average_pay = tot_pay / num_employee
         return average_pay
+    
+    def day_off(self, employee:Employee, type_off: str, days : int):
+        postoe = False
+        for emploiter in self.employee_list:
+            if employee.email == emploiter.email:
+                self.odmori.append([employee, type_off, days])
+                print(self.odmori)
+            
+
+           
+    
 
 semos_mk = Company("Semos Makedonija", 1234)
 
 vraboten = Employee("Tose", "Davitkov", "ime1@ime1.com", "developer", "semos_mk")
 
-print(ime1.position, ime1.salary)
-semos_mk.hire(ime1, 'support', 10000000)
-print(ime1.position, ime1.salary)
+# print(ime1.position, ime1.salary)
+# semos_mk.hire(ime1, 'support', 10000000)
+# print(ime1.position, ime1.salary)
 
 # Instanci od klasata kompanii
 neptun = Company('Neptun', 123, 'Mepso br2' )
@@ -56,4 +67,6 @@ rab3 = Employee('toshe', 'toshev','medika@va.com', 'postar', 'Promedika', 42000)
 
 neptun.hire(rab1, 'rabotnik', 40000)
 neptun.hire(rab2, 'rabotnik', 40000)
-neptun.hire(rab3, 'rabotnik', 40000)
+posta.hire(rab3, 'rabotnik', 40000)
+
+neptun.day_off(rab3, 'annual', 20)
